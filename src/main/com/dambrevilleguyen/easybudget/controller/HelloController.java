@@ -1,4 +1,4 @@
-package com.dambrevilleguyen.easybudget;
+package com.dambrevilleguyen.easybudget.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
