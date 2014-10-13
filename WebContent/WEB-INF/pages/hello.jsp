@@ -11,57 +11,34 @@
 			body {
 				margin: 20px;
 			}
-		 	h3 {
-				text-decoration: underline;
+		 	h1 {
+				border-bottom: 1px solid black;
 				width: 100%;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
 			}
 		</style>
 		<title>Easy Budget</title>
 	</head>
 	<body>
-		<h1>Message : ${message}</h1>
+		<h1>Identification</h1>
 		<form class="form-horizontal" role="form">
 		   <div class="form-group">
-		      <label for="balance" class="col-sm-2 control-label">Available Balance</label>
+		      <label for="login" class="col-sm-2 control-label">Login</label>
 		      <div class="col-sm-10">
-		      	<p class="form-control-static">100€</p>
-		      </div>
-		   </div>
-		</form>
-		<h3>Expenses</h3>
-		<form class="form-horizontal" role="form">
-		   <div class="form-group">
-		      <label for="pocketmoney1" class="col-sm-2 control-label">Pocket Money Child 1</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="pocketmoney" 
-		            placeholder="Enter The Amount">
+		         <input type="text" class="form-control" id="login" 
+		            placeholder="Ex: Hoshiyo">
 		      </div>
 		   </div>
 		   <div class="form-group">
-		      <label for="pocketmoney2" class="col-sm-2 control-label">Pocket Money Child 2</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="pocketmoney2" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		   <div class="form-group">
-		      <label for="groceryshopping" class="col-sm-2 control-label">Grocery Shopping</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="groceryshopping" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		   <div class="form-group">
-		      <label for="hobbies" class="col-sm-2 control-label">Hobbies</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="hobbies" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		</form>
+    		<label for="exampleInputPassword1" class="col-sm-2 control-label">Password</label>
+    		<div class="col-sm-10">
+    			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  			</div>
+  		</div>
+	</form>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Save changes</button>
-		  	<button type="button" class="btn">Cancel</button>
+			<a href="budget"><button type="submit" class="btn btn-primary">Sign In</button></a>
 		</div>
 		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
 	  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
