@@ -31,5 +31,10 @@ public enum Expenses {
             throw new IllegalExpensesException(name);
         }
     }
+	
+	public String getValue()
+	{
+		return value;
+	}
 
 }

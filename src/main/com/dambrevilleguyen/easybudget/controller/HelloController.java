@@ -1,6 +1,8 @@
 package com.dambrevilleguyen.easybudget.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dambrevilleguyen.easybudget.helpers.Helper;
 import com.dambrevilleguyen.easybudget.model.BudgetHandler;
+import com.dambrevilleguyen.easybudget.model.Expenses;
  
 @Controller
 @RequestMapping("/budget")
@@ -16,10 +19,23 @@ public class HelloController {
  
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) 
-	{
- 
+	{	
+		List<Expenses> expensesList = new ArrayList<Expenses>(Arrays.asList(Expenses.values()));
+
 		model.addAttribute("message", "Spring 3 MVC Hello World");
+		model.addAttribute("expensesList", expensesList);
 		return "budget";
+	}
+	
+	/**@RequestMapping(value = "/budget", method = RequestMethod.POST)
+	public String printEnum(ModelMap model)
+	{
+		List<Expenses> expensesList = new ArrayList<Expenses>(Arrays.asList(Expenses.values()));
+		
+		model.addAttribute("expensesList", expensesList);
+		
+		return "budget";
+		
 	}
 	
 	@RequestMapping(value = "/newBudget", method = RequestMethod.POST)
@@ -44,5 +60,5 @@ public class HelloController {
 		Helper.subtraction(money, expensesAmount);
 		
 		return "budget";
-	}
+	}**/
 }

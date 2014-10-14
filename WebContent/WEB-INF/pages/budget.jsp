@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,6 +26,12 @@
 				margin-top: -71px;
 				margin-left: 122px;
 			}
+			.btn-group {
+				float: left;
+			}
+			.form-actions {
+				margin-top: 50px;
+			}
 		</style>
 		<title>Easy Budget</title>
 	</head>
@@ -33,7 +41,7 @@
 		   <div class="form-group">
 		      <label for="balance" class="col-sm-2 control-label">Available Balance</label>
 		      <div class="col-sm-10">
-		      	<input type="text" class="form-control" id="balance" 
+		      	<input type="text" name="money" class="form-control" id="balance" 
 		            placeholder="Enter The Amount">
 		      </div>
 		   </div>
@@ -45,10 +53,10 @@
 		      <div class="btn-group">
 			    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a expense <span class="caret"></span></a>
 			    <ul class="dropdown-menu">
-			      <li><a href="#">Child</a></li>
-			      <li><a href="#">Grocery shopping</a></li>
-			      <li><a href="#">Hobbies</a></li>
-			      <li><a href="#">Other</a></li>
+			      <c:forEach items="${expensesList}" var="option">
+			      <li><a href="#" value="${option}">
+                    <c:out value="${option.value}"></c:out></a></li>
+			      </c:forEach>
 			    </ul>
 			  </div>
 			  <div class="col-sm-10">
