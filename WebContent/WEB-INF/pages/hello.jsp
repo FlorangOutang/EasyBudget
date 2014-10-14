@@ -15,7 +15,7 @@
 				border-bottom: 1px solid black;
 				width: 100%;
 				padding-bottom: 10px;
-				margin-bottom: 10px;
+				margin-bottom: 50px;
 			}
 		</style>
 		<title>Easy Budget</title>

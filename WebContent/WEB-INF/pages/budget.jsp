@@ -11,50 +11,48 @@
 			body {
 				margin: 20px;
 			}
-		 	h3 {
-				text-decoration: underline;
+		 	h1 {
+				border-bottom: 1px solid black;
 				width: 100%;
+				padding-bottom: 10px;
+				margin-bottom: 20px;
+			}
+			h3 {
+				border-bottom: 1px solid black;
+			}
+			.btn-xs {
+				margin-top: -71px;
+				margin-left: 122px;
 			}
 		</style>
 		<title>Easy Budget</title>
 	</head>
 	<body>
 		<h1>Message : ${message}</h1>
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" id="firstBlock">
 		   <div class="form-group">
 		      <label for="balance" class="col-sm-2 control-label">Available Balance</label>
 		      <div class="col-sm-10">
-		      	<p class="form-control-static">100€</p>
+		      	<input type="text" class="form-control" id="balance" 
+		            placeholder="Enter The Amount">
 		      </div>
 		   </div>
 		</form>
 		<h3>Expenses</h3>
-		<form class="form-horizontal" role="form">
-		   <div class="form-group">
-		      <label for="pocketmoney1" class="col-sm-2 control-label">Pocket Money Child 1</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="pocketmoney" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		   <div class="form-group">
-		      <label for="pocketmoney2" class="col-sm-2 control-label">Pocket Money Child 2</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="pocketmoney2" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		   <div class="form-group">
-		      <label for="groceryshopping" class="col-sm-2 control-label">Grocery Shopping</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="groceryshopping" 
-		            placeholder="Enter The Amount">
-		      </div>
-		   </div>
-		   <div class="form-group">
-		      <label for="hobbies" class="col-sm-2 control-label">Hobbies</label>
-		      <div class="col-sm-10">
-		         <input type="text" class="form-control" id="hobbies" 
+		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+		<form class="form-horizontal" role="form" id="lastBlock">
+		   <div class="form-group typemovement">
+		      <div class="btn-group">
+			    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select a expense <span class="caret"></span></a>
+			    <ul class="dropdown-menu">
+			      <li><a href="#">Child</a></li>
+			      <li><a href="#">Grocery shopping</a></li>
+			      <li><a href="#">Hobbies</a></li>
+			      <li><a href="#">Other</a></li>
+			    </ul>
+			  </div>
+			  <div class="col-sm-10">
+		      	<input type="text" class="form-control" id="balance" 
 		            placeholder="Enter The Amount">
 		      </div>
 		   </div>
@@ -63,7 +61,41 @@
 			<button type="submit" class="btn btn-primary">Save changes</button>
 		  	<button type="button" class="btn">Cancel</button>
 		</div>
+		
 		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
 	  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				
+				function setBehavior($line) {
+					$line.find('.dropdown-menu li a').click(function() { 
+						var text = $(this).text();
+					    $line.find('.dropdown-toggle').html(text + '<span class="caret"></span>');    
+					});
+				}
+				
+				var maxField = 10;
+				var wrapper = $("#lastBlock");
+				var addFieldButton = $(".btn-xs");
+				var i = 1;
+				var firstLine = $(".typemovement");
+				var firstLineClone = firstLine.clone().css('display', 'none');
+				
+				setBehavior(firstLine);
+					
+				$(addFieldButton).click(function(e) {
+					e.preventDefault();
+			        if(i < maxField) {
+			        	i++;
+			        	var newLine = firstLineClone.clone().css('display', 'block');
+			        	setBehavior(newLine);
+			        	wrapper.append(newLine);
+			        } else {
+			        	alert('t\'as trop de lignes');
+			        }
+			    });
+
+			});
+		</script>
 	</body>
 </html>
