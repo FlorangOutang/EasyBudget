@@ -101,47 +101,51 @@
 		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
 	  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				
-				function setBehavior($line) {
-					$line.find('.dropdown-menu li a').click(function() { 
-						var text = $(this).text();
-					    $line.find('.dropdown-toggle').html(text + '<span class="caret"></span>');    
-					});
-				}			
-				
-				var maxField = 5;
-				var wrapper = $("#lastBlock");
-				var addFieldButton = $(".btn-xs");
-				var i = 1;
-				var firstLine = $(".typemovement");
-				var firstLineClone = firstLine.clone().css('display', 'none');
-				
-				setBehavior(firstLine);	
-					
-				$(addFieldButton).click(function(e) {
-					e.preventDefault();
-			        if(i < maxField) {
-			        	i++;
-			        	var newLine = firstLineClone.clone().css('display', 'block');
-			        	setBehavior(newLine);
-			        	wrapper.append(newLine);
-			        	$('.btn-xm').click(function(e) {
-							console.log(this);
-							$(this).parent().parent().remove();
-							i--;
-						});
-			        } else {
-			        	alert('t\'as trop de lignes');
-			        }
-			    });
-				
-				$('.btn-xm').click(function(e) {
-					console.log(this);
-					$(this).parent().parent().remove();
-					i--;
+		$(document).ready(function() {
+			
+			function setBehavior($line) {
+				$line.find('.dropdown-menu li a').click(function() { 
+					var text = $(this).text();
+				    $line.find('.dropdown-toggle').html(text + '<span class="caret"></span>');    
 				});
+			}
+			
+			function cloneLine() {
+				var $newLine = $firstLineClone.clone().css('display', 'block');
+	        	setBehavior($newLine);
+	        	$wrapper.append($newLine);
+	        	$newLine.find('.btn-xm').click(function() {
+					$(this).parent().parent().remove();
+					nbField--;
+				});
+			}
+			
+			var maxField = 5;
+			var nbField = 1;
+			
+			$('.btn-xm').click(function() {
+				$(this).parent().parent().remove();
+				nbField--;
 			});
+			
+			
+			var $wrapper = $("#lastBlock");
+			var $addFieldButton = $(".btn-xs");
+			var $firstLine = $(".typemovement");
+			var $firstLineClone = $firstLine.clone().css('display', 'none');
+			
+			setBehavior($firstLine);	
+				
+			$addFieldButton.click(function() {
+		        if(nbField < maxField) {
+		        	nbField++;
+		        	cloneLine()
+		        } else {
+		        	console.log('t\'as trop de lignes');
+		        }
+		    });
+		});
 		</script>
+			
 	</body>
 </html>
