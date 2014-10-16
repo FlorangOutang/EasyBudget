@@ -28,7 +28,8 @@
 			}
 			p {
 				color: gray;
-			}
+				margin: 20px; 
+			}		
 			.form-actions {
 				margin-top: 70px;
 			}
@@ -48,6 +49,38 @@
 	</head>
 	<body>
 		<h1>Message : ${message}</h1>
+		
+		
+		<!-- set up the modal to start hidden and fade in and out -->
+		<div id="myModal" class="modal fade">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		    
+		    <!-- dialog header -->
+		    <div class="modal-header">
+		    	<button type="button" class="close" data-dismiss="modal">&times;<span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Saving</h4>
+		      </div>
+		      
+		      <!-- dialog body -->
+		      <div class="modal-body">
+		        <form class="form-horizontal" role="form">
+				   <div class="form-group">
+				      <p>You saved : </p>
+				      <div class="col-sm-5">
+				         <input class="form-control" type="text" placeholder="100€" readonly>
+				      </div>
+				   </div>
+			</form>
+		      </div>
+		      <!-- dialog buttons -->
+		      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+		    </div>
+		  </div>
+		</div>
+		
+		
+		
 		<form class="form-horizontal" role="form" id="firstBlock">
 		<p>Please enter your available balance for the month.</p>
 		   <div class="form-group">
@@ -75,7 +108,7 @@
 				  </div>
 			  </div>
 			  <div class="col-sm-6">
-		      	<input type="text" class="form-control" id="balance" 
+		      	<input type="text" class="form-control" id="movement" 
 		            placeholder="Enter The Amount">
 		      </div>
 		      <div class="col-sm-1">
@@ -84,18 +117,10 @@
 		  </div>
 		</form>
 		
-		<h3>Saving</h3>
-		<div class="form-group">
-			<div class="col-sm-1">
-				<p>You saved : </p>
-			</div>
-			<div class="col-sm-1">
-				<input class="form-control" type="text" placeholder="100€" readonly>
-			</div>
-		</div>
+		
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Save changes</button>
-		  	<button type="button" class="btn">Cancel</button>
+			<button class="btn btn-default" data-toggle="modal" data-target="#myModal">Save changes</button>
+		  	<button id="cancel" type="button" class="btn">Cancel</button>
 		</div>
 		
 		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
@@ -118,6 +143,10 @@
 					$(this).parent().parent().remove();
 					nbField--;
 				});
+	        	$('.form-actions').find('#cancel').click(function() {
+					$('#firstBlock').find('#balance').val('Enter The Amount');
+					$newLine.find('#movement').val('Enter The Amount');
+				});
 			}
 			
 			var maxField = 5;
@@ -128,6 +157,10 @@
 				nbField--;
 			});
 			
+			$('#cancel').click(function() {
+				$('#balance').val('Enter The Amount');
+				$('#movement').val('Enter The Amount');
+			});
 			
 			var $wrapper = $("#lastBlock");
 			var $addFieldButton = $(".btn-xs");
