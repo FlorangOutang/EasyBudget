@@ -108,7 +108,7 @@
 				  </div>
 			  </div>
 			  <div class="col-sm-6">
-		      	<input type="text" class="form-control" id="movement" 
+		      	<input name="expenses" type="text" class="form-control" id="movement" 
 		            placeholder="Enter The Amount">
 		      </div>
 		      <div class="col-sm-1">

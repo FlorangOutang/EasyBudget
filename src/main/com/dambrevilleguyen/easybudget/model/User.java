@@ -35,9 +35,4 @@ public class User {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	private void addExpenses(String name, float amount)
-	{
-		
-	}
 }
