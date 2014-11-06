@@ -9,7 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.ModelAndView;
 import com.dambrevilleguyen.easybudget.helpers.Helper;
 import com.dambrevilleguyen.easybudget.model.BudgetHandler;
 import com.dambrevilleguyen.easybudget.model.Expenses;
@@ -24,19 +24,28 @@ public class BudgetController {
 	}
  
 	@RequestMapping(value= "/budget", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model, @ModelAttribute BudgetHandler budgetHandler) 
+	public ModelAndView printWelcome() 
 	{	
 		List<Expenses> expensesList = new ArrayList<Expenses>(Arrays.asList(Expenses.values()));
+		
+		ModelAndView modelAndView = new ModelAndView("budget", "commandBudget", new BudgetHandler());
+		
+		modelAndView.addObject("message", "Welcome to Easy Budget !");
+		modelAndView.addObject("expensesList", expensesList);
 
-		model.addAttribute("message", "Welcome to Easy Budget !");
-		model.addAttribute("expensesList", expensesList);
-		return "budget";
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/newBudget", method = RequestMethod.POST)
 	public String printNewBudget(ModelMap model, @ModelAttribute BudgetHandler budgetHandler)
 	{	
-		Helper.subtraction(budgetHandler.getMoney(), budgetHandler.getExpenses());
+		float result = Helper.subtraction(budgetHandler.getMoney(), budgetHandler.getExpenses());
+		if(result < 0)
+		{
+			model.addAttribute("newMoney", "Error: negative value ");
+			return "newBudget";
+		}
+		model.addAttribute("newMoney", result);
 		
 		return "newBudget";
 	}

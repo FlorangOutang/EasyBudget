@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,8 @@
 		<link href="resources/themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="resources/themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="resources/themes/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  		<link rel="stylesheet" href="/resources/demos/style.css">
 		<style type="text/css">
 			body {
 				margin: 20px;
@@ -50,51 +53,21 @@
 	<body>
 		<h1>Message : ${message}</h1>
 		
-		
-		<!-- set up the modal to start hidden and fade in and out -->
-		<div id="myModal" class="modal fade">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		    
-		    <!-- dialog header -->
-		    <div class="modal-header">
-		    	<button type="button" class="close" data-dismiss="modal">&times;<span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Saving</h4>
-		      </div>
-		      
-		      <!-- dialog body -->
-		      <div class="modal-body">
-		        <form class="form-horizontal" role="form">
-				   <div class="form-group">
-				      <p>You saved : </p>
-				      <div class="col-sm-5">
-				         <input class="form-control" type="text" placeholder="100€" readonly>
-				      </div>
-				   </div>
-			</form>
-		      </div>
-		      <!-- dialog buttons -->
-		      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
-		    </div>
-		  </div>
-		</div>
-		
-		
-		
-		<form class="form-horizontal" role="form" id="firstBlock">
+		<form:form method="POST" action="newBudget" commandName="commandBudget" class="form-horizontal" role="form">
+		<div id="firstBlock">
 		<p>Please enter your available balance for the month.</p>
 		   <div class="form-group">
 		      <label for="balance" class="col-sm-2 control-label">Available Balance</label>
 		      <div class="col-sm-5">
-		      	<input type="text" name="money" class="form-control" id="balance" 
-		            placeholder="Enter The Amount">
+		      	<form:input type="text" name="money" path="money" class="form-control" id="balance" 
+		            placeholder="Enter The Amount"/>
 		      </div>
 		   </div>
-		</form>
+		</div>
 		<h3>Expenses</h3>
 		<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
 		<p>Please enter all of your expenses for the month.</p>
-		<form class="form-horizontal" role="form" id="lastBlock">
+		<div id="lastBlock">
 		   <div class="form-group typemovement">
 		      <div class="col-sm-3">
 			      <div class="btn-group">
@@ -108,20 +81,28 @@
 				  </div>
 			  </div>
 			  <div class="col-sm-6">
-		      	<input name="expenses" type="text" class="form-control" id="movement" 
-		            placeholder="Enter The Amount">
+		      	<form:input name="expenses" path="expenses" type="text" class="form-control" id="movement" 
+		            placeholder="Enter The Amount"/>
 		      </div>
 		      <div class="col-sm-1">
 				<button type="button" class="btn btn-default btn-xm"><span class="glyphicon glyphicon-trash"></span></button>
 		      </div>
 		  </div>
-		</form>
-		
+		</div>
 		
 		<div class="form-actions">
-			<button class="btn btn-default" data-toggle="modal" data-target="#myModal">Save changes</button>
+			<button type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">Save changes</button>
 		  	<button id="cancel" type="button" class="btn">Cancel</button>
 		</div>
+		</form:form>
+		
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<script>
+  		$(function() {
+   		$( "#dialog" ).dialog();
+  		});
+  		</script>
 		
 		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
 	  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
