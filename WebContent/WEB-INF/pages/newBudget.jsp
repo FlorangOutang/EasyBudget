@@ -7,40 +7,29 @@
   <link href="resources/themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="resources/themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="resources/themes/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+  <style type="text/css">
+  		body {
+			text-align: center;
+		}
+		.btn {
+		    margin-top: 30px;
+		}
+  </style>
 <title>EasyBudget - New Budget</title>
 </head>
 <body>
-	<!-- set up the modal to start hidden and fade in and out -->
-<!-- 	<div id="dialog" class="modal fade"> -->
-<!-- 		<div class="modal-dialog"> -->
-<!-- 		    <div class="modal-content"> -->
+	<h4>Saving</h4>
+	<form role="form">
+	  <div class="form-group">
+		    <label for="title">You saved :</label>
+		    
+	         <input name="newMoney" class="form-control" type="text" readonly value="${newMoney}"/>
+	      </div>
+         <a href="javascript:history.go(-1)"><button type="button" class="btn btn-default btn-lg">Back to previous page</button></a>
 
-		    <!-- dialog header -->
-		    <div class="modal-header">
-		    	<button type="button" class="close" data-dismiss="modal">&times;<span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Saving</h4>
-		      </div>
-		      
-		      <!-- dialog body -->
-		      <div class="modal-body">
-		        <form class="form-horizontal" role="form">
-				   <div class="form-group">
-				      <p>You saved : </p>
-				      <div class="col-sm-5">
-				         <input name="newMoney" class="form-control" type="text" readonly value="${newMoney}"/>
-				      </div>
-				   </div>
-			</form>
-		      </div>
-		      <!-- dialog buttons -->
-		      <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-		      </div>
-<!-- 		   </div> -->
-<!-- 		 </div> -->
-<!-- 	   </div> -->
-		
-		<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
-	  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
+	</form>
+	<script type="text/javascript" src="resources/themes/jquery/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="resources/themes/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 
